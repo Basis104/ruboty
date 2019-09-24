@@ -14,7 +14,8 @@ module Ruboty
     def logger
       @logger ||= begin
         $stdout.sync = true
-        logger = Logger.new($stdout)
+        log_path = ENV["LOG_PATH"] || $stdout
+        logger = Logger.new(log_path)
         logger.level = ENV["LOG_LEVEL"] ? ENV["LOG_LEVEL"].to_i : Logger::INFO
         logger
       end
